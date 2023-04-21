@@ -4,8 +4,11 @@
 #include "stm32f1xx_hal.h"
 #include <sys/stat.h>
 #include <stdio.h>
-
-void RetargetInit(UART_HandleTypeDef *huart);
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+    void RetargetInit(UART_HandleTypeDef* huart);
 
 int _isatty(int fd);
 
@@ -17,6 +20,11 @@ int _lseek(int fd, int ptr, int dir);
 
 int _read(int fd, char *ptr, int len);
 
-int _fstat(int fd, struct stat *st);
+int _fstat(int fd, struct stat* st);
+#ifdef __cplusplus
+}
+
+#endif
 
 #endif //#ifndef _RETARGET_H__
+
